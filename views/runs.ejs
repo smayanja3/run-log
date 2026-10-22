@@ -36,7 +36,8 @@
                 <%= run.date.toLocalDateString('en-US', { timezone: 'UTC'}) %>
                 <%= run.distance %> mi
                 <!-- run pace needto calculate -->
-                <%= run.time %> min
+                <%= run.displayTime %> min
+                <%= run.pace %>
                 <%= run.feel %>
                 <% if (run.rating) { %>
                     * <%= run.rating %>
