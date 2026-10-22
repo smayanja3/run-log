@@ -27,10 +27,35 @@
 
 
  // GET ======================================================================
+//---- all logged runs
+ app.get('/runs',(req, res) => {
+    //---- sorts them by newset first
+    Run.find().sort({date: -1})
+    .then(runs => res.render('runs', {runs}))
+    .catch(err => {
+        console.log(err.message)
+        res.status(500).send('Something went wrong')
+    })
+})
 
+//---- empty form
+app.get('/runs/new', (req, res) => {
+    res.render('add-run')
+})
 
  // POST =====================================================================
-
+//----- logging new run
+ app.post('/runs', (req,res) => {
+    console.log(req.body)
+    Run.create(req.body)
+    .then(() => {
+        res.redirect('/runs')
+    })
+    .catch(err => {
+        console.log(err.message)
+        res.redirect('/runs/new')
+    })
+})
 
  // PUT ======================================================================
 
@@ -41,3 +66,4 @@
  app.listen(PORT, () => {
     console.log(`Server is BURING OIL on PORT ${PORT}`)
 })
+ 

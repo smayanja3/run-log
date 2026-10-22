@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log New Run</title>
+</head>
+
+<body>
+    <header>
+        <h2 class="logo">Stride<span>Log</span></h2>
+        <nav>
+            <ul>
+                <li><a href="/profile"> Profile</a></li>
+                <li><a href="/runs"> Run</a></li>
+                <li><a href="/logout"> Sign Out</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2> New Activity</h2>
+        <a href="/runs/new">Log a Run</a>
+
+    <section class="logbox">
+    <% if (runs.length === 0) { %>
+        <p> No Activties Logged<a href="/runs/new">Add a Run</a></p>
+    <% } %>
+
+    <% runs.forEach((run) => { %>
+        <a href="/runs/<%= run._id %>" class="log">
+        <div>
+            <p class="routeName"><%= run.route %></p>
+            <p class="details">
+                <!--formats the date to 10/21/2026 and not Wed Oct 21 2026 20: ..-->
+                <%= run.date.toLocalDateString('en-US', { timezone: 'UTC'}) %>
+                <%= run.distance %> mi
+                <!-- run pace needto calculate -->
+                <%= run.time %> min
+                <%= run.feel %>
+                <% if (run.rating) { %>
+                    * <%= run.rating %>
+               <% } %>
+                <!-- <%= run.notes %>  not sure if ill keep this on this page yet?-->
+            </p>
+        </div>
+        </a>
+    <% }) %>
+
+    </section>
+    </main>
+
+</body>
+
+</html>
