@@ -33,10 +33,10 @@
             <p class="routeName"><%= run.route %></p>
             <p class="details">
                 <!--formats the date to 10/21/2026 and not Wed Oct 21 2026 20: ..-->
-                <%= run.date.toLocalDateString('en-US', { timezone: 'UTC'}) %>
+                <%= run.date.toLocaleDateString('en-US', { timeZone: 'UTC' }) %>
                 <%= run.distance %> mi
                 <!-- run pace needto calculate -->
-                <%= run.displayTime %> min
+                <%= run.displayTime %>
                 <%= run.pace %>
                 <%= run.feel %>
                 <% if (run.rating) { %>

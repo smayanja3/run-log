@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= run.route %></title>
+</head>
+<body>
+     <header>
+        <h2 class="logo">Stride<span>Log</span></h2>
+        <nav>
+            <ul>
+                <li><a href="/runs"> Run</a></li>
+                <li><a href="/runs/new"> Log a Run</a></li>
+                <li><a href="/logout"> Sign Out</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+    <a href="/runs">← Back to runs</a>
+
+    <section class="run">
+         <h1><%= run.route || 'Run' %></h1>
+        <span class="feel <%= run.feel %>"><%= run.feel %></span>
+    
+        <ul class="stats">
+            <li><span>Date </span><%= run.date.toLocaleDateString('en-US', { timeZone: 'UTC' }) %></li>
+            <li><span>Distance </span><%= run.distance %></li>
+            <li><span>Time </span><%= run.displatTime %></li>
+            <li><span>Pace </span><%= run.displatPace %></li>
+            <li><span>Rating </span><%= run.rating ? `${run.rating}/ 10` : 'Not Rated' %></li>
+        </ul>
+        
+        <h3>Notes</h3>
+        <p><%= run.notes || 'No comment yet' %></p>
+
+        <div class="action">
+        <a href="/runs/edit/<%= run._id %>" class="btn">Edit</a>
+        <button id="deleteBtn" class="danger" data-id="<%= run._id %>">Delete</button>
+        </div>
+    </section>
+</main>
+    <script src="/js/main.js" ></script>
+</body>
+</html>
