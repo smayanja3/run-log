@@ -25,10 +25,10 @@
         <span class="feel <%= run.feel %>"><%= run.feel %></span>
     
         <ul class="stats">
-            <li><span>Date </span><%= run.date.toLocaleDateString('en-US', { timeZone: 'UTC' }) %></li>
+            <li><span>Date </span><%= run.displayDate %></li>
             <li><span>Distance </span><%= run.distance %></li>
-            <li><span>Time </span><%= run.displatTime %></li>
-            <li><span>Pace </span><%= run.displatPace %></li>
+            <li><span>Time </span><%= run.displayTime %></li>
+            <li><span>Pace </span><%= run.pace %></li>
             <li><span>Rating </span><%= run.rating ? `${run.rating}/ 10` : 'Not Rated' %></li>
         </ul>
         

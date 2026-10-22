@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log New Run</title>
+</head>
+
+<body>
+    <header>
+        <h2 class="logo">Stride<span>Log</span></h2>
+        <nav>
+            <ul>
+                <li><a href="/profile"> Profile</a></li>
+                <li><a href="/runs"> Runs</a></li>
+                <li><a href="/logout"> Sign Out</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2> Edit <%= run.route %></h2>
+
+        <form id="editForm" data-id="<%= run._id %>" required>
+
+            <label>Date<input type="date" name="date"  value="<%= run.inputDate %>" required></label>
+            <label>Route<input type="text" name="route" placeholder="Charles River" value="<%= run.route %>"></label>
+            <!-- add steps to get the second value point for my distance -->
+            <label>Distance (miles)<input type="number" name="distance" min="0.1" step="0.01" placeholder="3.27" value="<%= run.distance %>"
+                    required></label>
+            <!-- have to split the time by min and sec for conversion -->
+            <label>Time (minutes)</label>
+            <div class="timeInput">
+                <label>Minutes<input type="number" name="minutes" min="0" placeholder="47" value="<%= run.minutes %>" required></label>
+                <!-- do i need value=0 to the times? -->
+                <label>Seconds<input type="number" name="seconds" min="0" max="59" placeholder="34"  value="<%= run.seconds %>" required></label>
+            </div>
+
+            <label for="feel">Feeling</label>
+            <select name="feel" id="feel">
+                <option value="strong" <%= run.feel === 'strong' ? 'selected' : '' %>>Strong</option>
+                <option value="great" <%= run.feel === 'great' ? 'selected' : '' %>>Great</option>
+                <option value="okay" <%= run.feel === 'okay' ? 'selected' : '' %>>Okay</option>
+                <option value="drained" <%= run.feel === 'drained' ? 'selected' : '' %>>Drained</option>
+                <option value="balanced" <%= run.feel === 'balanced' ? 'selected' : '' %>>Balanced</option>
+            </select>
+
+            <label>Rating(1-10)<input type="number" name="rating" min='1' max="10" value="<%= run.rating %>"></label>
+            </div>
+
+            <label>Notes<textarea name="notes"><%= run.notes %></textarea></label>
+
+            <p id="error-message"></p>
+            
+            <button type="submit">Add Run</button>
+            <a href="/runs/<%= run._id %>">Cancel</a>
+
+        </form>
+    </main>
+    <script src="/js/main.js"></script>
+</body> 
+
+</html>

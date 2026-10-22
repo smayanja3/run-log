@@ -40,10 +40,46 @@
 
 //---- empty form
 app.get('/runs/new', (req, res) => {
-    res.render('add-run')
+    res.render('addRun')
 })
 
 //----- oneRun
+app.get('/runs/:id', (req, res) => {
+    if(!mongoose.isValidObjectId(req.params.id)) {
+        return res.redirect('/runs')
+    }
+    Run.findById(req.params.id)
+    .then(run => {
+        if(!run) {
+            return res.redirect('/runs')
+        }
+        res.render('oneRun', {run})
+    })
+    .catch(err => {
+        console.log(err.message)
+        res.redirect('/runs')
+    })
+})
+
+//---- edit a run from ONE Run
+app.get('/runs/edit/:id', (req, res) => {
+    if(!mongoose.isValidObjectId(req.params.id)){
+        return res.redirect('/runs')
+    }
+    Run.findById(req.params.id)
+    .then(run => {
+        if(!run) {
+            return res.redirect('/runs')
+        }
+        res.render('editRun', {run})
+    })
+    .catch(err => {
+        console.log(err.messsage)
+        res.redirect('/run')
+    })
+})
+
+
 
  // POST =====================================================================
 //----- logging new run

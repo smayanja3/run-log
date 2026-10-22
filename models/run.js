@@ -13,8 +13,22 @@ const runSchema = new mongoose.Schema({
     },
     rating: { type: Number, min: 1, max: 10 },
     notes: String,
-}, { timestamp: true }
+}, { timestamps: true }
 )
+//virtual = calculate feilds, not saved in the db
+//---- date display (10,21/2026)
+runSchema.virtual('displayDate').get(function () {
+    return this.date.toLocaleDateString('en-US', {timeZone: 'UTC'})
+})
+
+
+//---- date input for the edit page to appear in the calander/ date input
+// toISOString()= is a date method that returns a string representing a date
+//2026-20-21
+runSchema.virtual('inputDate').get(function () {
+    return this.date.toISOString().slice(0,10)
+}) 
+
 
 // time 47:35
 //virtuals == doc properties that can GET = are usuaful formatting and combinding fields
@@ -24,6 +38,7 @@ runSchema.virtual('displayTime').get(function () {
     return `${this.minutes}:${secs} time`
 })
 
+
 //pace conversion 12:15/min
 runSchema.virtual('pace').get(function() {
     //combined the minutes and value together to work with one value
@@ -32,7 +47,7 @@ runSchema.virtual('pace').get(function() {
     const secondsPerMile = totalSeconds / this.distance
     //split the distance by min and seconds so we can display it to the user
     let paceMin = Math.floor(secondsPerMile / 60)
-    let paceSec = Math.round(secondsPerMile % 60 === 0)
+    let paceSec = Math.round(secondsPerMile % 60)
     if(paceSec === 60) {
         paceMin += 1 // 60 sec == 1 minute add to the pace min
         paceSec = 0
