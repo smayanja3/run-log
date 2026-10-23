@@ -67,7 +67,7 @@ app.get('/runs/edit/:id', (req, res) => {
         return res.redirect('/runs')
     }
     Run.findById(req.params.id)
-    .then(run => {
+    .then(run => { 
         if(!run) {
             return res.redirect('/runs')
         }
@@ -96,6 +96,20 @@ app.get('/runs/edit/:id', (req, res) => {
 })
 
  // PUT ======================================================================
+
+//--- edited Run
+app.put('/runs/:id', (req, res) => {
+    console.log('Put to body:', req.body)
+    Run.findByIdAndUpdate(req.params.id, req.body, {runValidators: true})
+
+    .then(() => {
+        res.json({message: 'Updated'})
+    })
+    .catch(err => {
+        console.log(err.message)
+        res.status(400).json({error: err.message})
+    })
+})
 
 
  // DELETE ===================================================================
