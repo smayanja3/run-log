@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const runSchema = new mongoose.Schema({
     date: { type: Date, required: true },
     distance: { type: Number, required: true, min: 0.1 },
-    hours: {type: Number, min: 1, default: 0},
+    hours: {type: Number, min: 0, default: 0},
     minutes: { type: Number, required: true, min: 0 },
     seconds: { type: Number, required: true, min: 0, max: 59, default: 0 },
     route: { type: String, required: true },
@@ -37,21 +37,25 @@ runSchema.virtual('inputDate').get(function () {
 runSchema.virtual('displayTime').get(function () {
     const secs = this.seconds < 10 ? `0${this.seconds}` : this.seconds
     // only work if the time is over or = hour
-    if(this.hour) {
+    if(this.hours) {
         const mins = this.minutes < 10 ? `0${this.minutes}` : this.minutes
-        return `${this.hours}:${this.minutes}:${this.secs}`
+        return `${this.hours}:${mins}:${secs}`
     }
     return `${this.minutes}:${secs}`
 })
 
+//combined the minutes and value together to work with one value
+// had to add the hours 1 hr = 3600 seconds
+//took this out the pace function so i can use it in my profile as well made it global now
+runSchema.virtual('totalSeconds').get(function() {
+    return((this.hours || 0) * 3600) + (this.minutes * 60) + (this. seconds || 0)
+
+})
 
 //pace conversion 12:15/min
 runSchema.virtual('pace').get(function() {
-    //combined the minutes and value together to work with one value
-    // had to add the hours 1 hr = 3600 seconds
-    const totalSeconds = ((this.hours || 0) * 3600) + (this.minutes * 60) + this. seconds
     //divie seconds by distance
-    const secondsPerMile = totalSeconds / this.distance
+    const secondsPerMile = this.totalSeconds / this.distance
     //split the distance by min and seconds so we can display it to the user
     let paceMin = Math.floor(secondsPerMile / 60)
     let paceSec = Math.round(secondsPerMile % 60)

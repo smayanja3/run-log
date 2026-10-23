@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Running Stats</title>
+</head>
+
+<body>
+    <header>
+        <h2 class="logo">Stride<span>Log</span></h2>
+        <nav>
+            <ul>
+                <li><a href="/runs"> Run</a></li>
+                <li><a href="/runs/new"> Log a Run</a></li>
+                <li><a href="/logout"> Sign Out</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>My running stats</h1>
+
+       <% if(runs.length === 0) { %>
+        <p>No runs yet.<a href="/runs/new">Log your first run</a></p>
+      <% } else { %> 
+    
+        <div class="headstat">
+            <p class="label">Total miles</p>
+            <p><%= stats.totalMiles %></p>
+            <p>across <%= stats.totalRuns %> runs</p>
+        </div>
+
+        <div class="gridStats">
+            <div class="stat"><p class="label">Avg pace</p><p class="val"><%= stats.avgPace  %></p></div>
+            <div class="stat"><p class="label"></p>Fastest pace<p class="val"><%= stats.fastestPace %></p></div>
+            <div class="stat"><p class="label"></p> Longest run<p class="val"><%=stats.longest  %></p></div>
+            <div class="stat"><p class="label"></p>Total time<p class="val"><%= stats.totalTime %></p></div>
+        </div>    
+
+        <section>
+            <h3>How runs felt</h3>
+            <div class="feels">
+                <% for (const feel in feels) { %>
+                    <span class="feel <%= feel %>"<%= feel %> x <%= feels[feel] %></span>
+              <% } %>
+            </div>
+        </section>
+   <% } %>
+
+    </main>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>
