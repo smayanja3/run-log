@@ -113,7 +113,21 @@ app.put('/runs/:id', (req, res) => {
 
 
  // DELETE ===================================================================
+app.delete('/runs/:id', (req, res) => {
+    console.log('Deleted Run:', req.params.id)
+    Run.findByIdAndDelete(req.params.id)
+    .then(() => {
+        res.json({ message: 'Deleted'})
+    })
+    .catch(err => {
+        res.status(400).json({ error: err.message})
+    })
+})
 
+
+//======================================================================
+// AUTHENTICATION ======================================================
+//======================================================================
 
  app.listen(PORT, () => {
     console.log(`Server is BURING OIL on PORT ${PORT}`)

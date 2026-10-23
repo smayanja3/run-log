@@ -31,6 +31,7 @@
             <!-- have to split the time by min and sec for conversion -->
             <label>Time (minutes)</label>
             <div class="timeInput">
+                 <label>Hours<input type="number" name="hours" min="1" placeholder="2" value="<%= run.hours %>" ></label>
                 <label>Minutes<input type="number" name="minutes" min="0" placeholder="47" value="<%= run.minutes %>" required></label>
                 <!-- do i need value=0 to the times? -->
                 <label>Seconds<input type="number" name="seconds" min="0" max="59" placeholder="34"  value="<%= run.seconds %>" required></label>

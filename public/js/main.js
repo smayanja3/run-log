@@ -41,7 +41,33 @@ if (editForm) {
             }
         })
     })
+}
 
+//---------------------- DELETE  ----------------------//
+//------- DELETE/REMOVE
 
+if (deleteBtn) {
+    deleteBtn.addEventListener('click', function () {
+        const sure = confirm('Delete this anime from your watchlist?')
 
+        if (!sure) return // <-- another pop up im thinkin Clicked cancel so STOP
+
+        const id = this.dataset.id
+
+        console.log('deleting', id)
+
+        fetch(`/runs/${id}`, {
+            method: 'delete'
+        })
+            .then(res => {
+                console.log('server approved:', res.status, res.ok)
+                if (res.ok) {
+                    window.location.href = ('/runs') 
+                } else {
+                    return res.json().then(data => {
+                        document.getElementById('error-message').innerText = data.error
+                    })
+                }
+            })
+    })
 }

@@ -27,8 +27,9 @@
             <label>Distance (miles)<input type="number" name="distance" min="0.1" step="0.01" placeholder="3.27"
                     required></label>
             <!-- have to split the time by min and sec for conversion -->
-            <label>Time (minutes)</label>
+            <label>Time (minutes)</label> 
             <div class="timeInput">
+                <label>Hours<input type="number" name="hours" min="1" placeholder="2"></label>
                 <label>Minutes<input type="number" name="minutes" min="0" placeholder="47" required></label>
                 <!-- do i need value=0 to the times? -->
                 <label>Seconds<input type="number" name="seconds" min="0" max="59" placeholder="34" required></label>

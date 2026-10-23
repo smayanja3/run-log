@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const runSchema = new mongoose.Schema({
     date: { type: Date, required: true },
     distance: { type: Number, required: true, min: 0.1 },
+    hours: {type: Number, min: 1, default: 0},
     minutes: { type: Number, required: true, min: 0 },
     seconds: { type: Number, required: true, min: 0, max: 59, default: 0 },
     route: { type: String, required: true },
@@ -35,14 +36,20 @@ runSchema.virtual('inputDate').get(function () {
 //SET= usful fr decomposing a single value into mulktiple values to store
 runSchema.virtual('displayTime').get(function () {
     const secs = this.seconds < 10 ? `0${this.seconds}` : this.seconds
-    return `${this.minutes}:${secs} time`
+    // only work if the time is over or = hour
+    if(this.hour) {
+        const mins = this.minutes < 10 ? `0${this.minutes}` : this.minutes
+        return `${this.hours}:${this.minutes}:${this.secs}`
+    }
+    return `${this.minutes}:${secs}`
 })
 
 
 //pace conversion 12:15/min
 runSchema.virtual('pace').get(function() {
     //combined the minutes and value together to work with one value
-    const totalSeconds = this.minutes * 60 + this. seconds
+    // had to add the hours 1 hr = 3600 seconds
+    const totalSeconds = ((this.hours || 0) * 3600) + (this.minutes * 60) + this. seconds
     //divie seconds by distance
     const secondsPerMile = totalSeconds / this.distance
     //split the distance by min and seconds so we can display it to the user
