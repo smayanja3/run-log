@@ -38,13 +38,16 @@
             <div class="stat"><p class="label"></p> Longest run<p class="val"><%=stats.longest  %></p></div>
             <div class="stat"><p class="label"></p>Total time<p class="val"><%= stats.totalTime %></p></div>
         </div>    
-
+<!-- for (const feel in feels) {  runs once for each key in the feild object}
+ cant write feels.feel becasue it looks for an key with that name -->
         <section>
             <h3>How runs felt</h3>
             <div class="feels">
-                <% for (const feel in feels) { %>
-                    <span class="feel <%= feel %>"<%= feel %> x <%= feels[feel] %></span>
-              <% } %>
+                <!-- creats the array of feels -->
+               <% const feelNames = Object.keys(feels) %>
+               <% for( let i = 0; i < feelNames.length; i++) { %>
+                    <span class="feel <%= feelNames[i] %>"><%= feelNames[i] %> x <%= feels[feelNames[i]] %></span>
+              <%  } %>
             </div>
         </section>
    <% } %>
