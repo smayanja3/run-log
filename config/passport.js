@@ -1,4 +1,4 @@
-const LocalStrategy = require('passport-local').Strategy
+const LocalStrategy = require('passport-local').Strategy 
 const User = require('../models/user')
 
 // export a function that sets up passport. server.js calls it and passes passport in
