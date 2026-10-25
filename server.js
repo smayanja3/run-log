@@ -223,52 +223,60 @@ app.get('/signup', (req, res) => {
 
 //process the signup form
 app.post('/signup', passport.authenticate('local-signup', {
-    succesRedirect: '/profile',
+    successRedirect: '/profile',
     failureRedirect: '/signup',
     failureFlash: true,
 }))
 
 //------- login form
 //blank form
-// app.get('/login', (req, res) => {
-//     res.render('login', { message: req.flash('loginMessage') })
-// })
+app.get('/login', (req, res) => {
+    res.render('login', { message: req.flash('loginMessage') })
+})
 
 //process the login form
-// app.post('/login', passport.authenticate('local-login', {
-//     succesRedirect: '/profile',
-//     failureRedirect: '/login',
-//     failureFlash: true,
-// }))
+app.post('/login', passport.authenticate('local-login', {
+    successRedirect: '/profile',
+    failureRedirect: '/login',
+    failureFlash: true,
+}))
 
 //------- logout
-// app.get('/login', (req, res, next) => {
-//     req.logout((err) => {
-//         if (err) return next(err)
-//         res.redirect('/login')
-//     })
-// })
+app.get('/login', (req, res, next) => {
+    req.logout((err) => {
+        if (err) return next(err)
+        res.redirect('/login')
+    })
+})
 
 //-------- profile (only for logged in users)
-// app.get('profile', isLoggedIn, (req, res) => {
-//     Run.find({ owner: req.user._id })
-//         .then(exercise => {
-//             res.render('profile', { user: req.user, exercise })
-//         })
-//         .catch(err => {
-//             console.log(err.message)
-//             res.status(500).send('Something went wrong loading your profile')
-//         })
-// })
+app.get('profile', isLoggedIn, (req, res) => {
+    Run.find({ owner: req.user._id })
+        .then(exercise => {
+            res.render('profile', { user: req.user, exercise })
+        })
+        .catch(err => {
+            console.log(err.message)
+            res.status(500).send('Something went wrong loading your profile')
+        })
+})
 
 //------- LOGGEDIN
-// function isLoggedIn(req, res, next) {
-//     if (req.isAuthenticated()) {
-//         return next()
-//     }
-//     res.redirect('/login')
-// }
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next()
+    }
+    res.redirect('/login')
+}
 
+
+//----- logout
+app.get('/logout', (req,res) => {
+    req.logout((err) => {
+        if(err) return next(err)
+            res.redirect('/login')
+    })
+})
 
 app.listen(PORT, () => {
     console.log(`Server is BURING OIL on PORT ${PORT}`)
