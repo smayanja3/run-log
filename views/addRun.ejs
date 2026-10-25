@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/add.css">
     <title>Log New Run</title>
 </head>
 
@@ -18,41 +20,52 @@
             </ul>
         </nav>
     </header>
+
     <main>
         <h2> New Activity</h2>
         <form action="/runs" method="POST">
-            <label>Date<input type="date" name="date" required></label>
-            <label>Route<input type="text" name="route" placeholder="Charles River"></label>
-            <!-- add steps to get the second value point for my distance -->
-            <label>Distance (miles)<input type="number" name="distance" min="0.1" step="0.01" placeholder="3.27"
-                    required></label>
-            <!-- have to split the time by min and sec for conversion -->
-            <label>Time (minutes)</label> 
-            <div class="timeInput">
-                <label>Hours<input type="number" name="hours" min="1" placeholder="2"></label>
-                <label>Minutes<input type="number" name="minutes" min="0" placeholder="47" required></label>
-                <!-- do i need value=0 to the times? -->
-                <label>Seconds<input type="number" name="seconds" min="0" max="59" placeholder="34" required></label>
+            <div id="formBox">
+                <div id="formTop">
+                    <label id="formDate">Date<input type="date" name="date" required></label>
+                    <!-- add steps to get the second value point for my distance -->
+                    <label>Distance (miles)<input type="number" name="distance" min="0.1" step="0.01" placeholder="3.27"
+                            required></label>
+                </div>
+
+                <label>Route<input type="text" name="route" placeholder="Charles River"></label>
+
+                <!-- have to split the time by min and sec for conversion -->
+                <p>Time (minutes)</p>
+                <section class="timeInput">
+                    <label>Hours<input type="number" name="hours" min="1" placeholder="2"></label>
+                    <label>Minutes<input type="number" name="minutes" min="0" placeholder="47" required></label>
+                    <!-- do i need value=0 to the times? -->
+                    <label>Seconds<input type="number" name="seconds" min="0" max="59" placeholder="34"
+                            required></label>
+                    </section>
+
+                <div id="formBottom">
+                    <label for="feel">Feeling</label>
+                    <select name="feel" id="feel">
+                        <option value="strong">Strong</option>
+                        <option value="great">Great</option>
+                        <option value="okay">Okay</option>
+                        <option value="drained">Drained</option>
+                        <option value="balanced">Balanced</option>
+                    </select>
+                    <label>Rating(1-10)<input type="number" name="rating" min='1' max="10"
+                            placeholder="optional"></label>
+                </div>
+
+                <label>Notes<textarea name="notes"></textarea></label>
+                <div id="actions">
+                    <button type="submit">Add Run</button>
+                    <a href="/runs">Cancel</a>
+                </div>
             </div>
-
-            <label for="feel">Feeling</label>
-            <select name="feel" id="feel">
-                <option value="strong">Strong</option>
-                <option value="great">Great</option>
-                <option value="okay">Okay</option>
-                <option value="drained">Drained</option>
-                <option value="balanced">Balanced</option>
-            </select>
-
-            <label>Rating(1-10)<input type="number" name="rating" min='1' max="10" placeholder="optional"></label>
-            </div>
-            <label>Notes<textarea name="notes"></textarea></label>
-            <button type="submit">Add Run</button>
-            <a href="/runs">Cancel</a>
-
         </form>
     </main>
 
-</body> 
+</body>
 
 </html>
