@@ -278,6 +278,10 @@ app.get('/logout', (req,res) => {
     })
 })
 
+app.get('/', (req, res) => {
+  res.redirect('/login');
+});
+
 app.listen(PORT, () => {
     console.log(`Server is BURNING OIL on PORT ${PORT}`)
 })
