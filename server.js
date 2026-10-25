@@ -279,5 +279,5 @@ app.get('/logout', (req,res) => {
 })
 
 app.listen(PORT, () => {
-    console.log(`Server is BURING OIL on PORT ${PORT}`)
+    console.log(`Server is BURNING OIL on PORT ${PORT}`)
 })
