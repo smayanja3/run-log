@@ -1,74 +1,202 @@
- *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
  }
 
- * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+ :root {
+     --page: #f7f4f0;
+     --card: #ffffff;
+     --text: #211e1b;
+     --muted: #756d66;
+     --border: #e8ded3;
+     --header: #211e1b;
+     --header-text: #ffffff;
+     --accent: #d94b28;
+     --soft: #fbe5dc;
+ }
 
-:root {
-    --page: #f7f4f0;
-    --card: #ffffff;
-    --text: #211e1b;
-    --muted: #756d66;
-    --border: #e8ded3;
-    --header: #211e1b;
-    --header-text: #ffffff;
-    --accent: #d94b28;
-    --soft: #fbe5dc;
-}
+ body {
+     background: var(--page);
+     color: var(--text)
+ }
 
-body {
-    background: var(--page);
-    color: var(--text)
-}
-
-/* =========================== 
+ /* =========================== 
    === HEADER AND NAV BAR ===
 ============================== */
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 24px 24px;
-    background: var(--header);
-}
+ header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     flex-wrap: wrap;
+     padding: 24px 24px;
+     background: var(--header);
+ }
 
-.logo {
-    font-size: 24px;
-    color: var(--header-text);
-    text-decoration: none;
-}
+ .logo {
+     font-size: 24px;
+     color: var(--header-text);
+     text-decoration: none;
+ }
 
-.logo span{
-    color: var(--accent)
-}
+ .logo span {
+     color: var(--accent)
+ }
 
-nav ul {
-    display: flex;
-    gap: 8px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
+ nav ul {
+     display: flex;
+     gap: 8px;
+     list-style: none;
+     margin: 0;
+     padding: 0;
+ }
 
-nav a {
-    padding: 6px 14px;
-    border-radius: 20px;
-    border: 1px solid var(--text);
-    color: var(--muted);
-    text-decoration: none;
+ nav a {
+     padding: 6px 14px;
+     border-radius: 20px;
+     border: 1px solid var(--text);
+     color: var(--muted);
+     text-decoration: none;
 
-}
+ }
 
-nav a:hover {
+ nav a:hover {
+     background: var(--accent);
+     color: var(--header-text);
+ }
+
+ /* =========================== 
+   === pages ===
+============================== */
+
+ .label {
+     color: gray;
+     margin: 0;
+ }
+
+ .feel {
+     display: inline-block;
+     padding: 4px 12px;
+     margin: 5px;
+     border: 1px solid var(--accent);
+     border-radius: 15px;
+     color: var(--accent);
+ }
+
+ /* =========================== 
+   === PROFILE===
+============================== */
+
+ #proContainer {
+     box-sizing: border-box;
+     max-width: 900px;
+     padding: 25px;
+     margin: 0 auto;
+ }
+
+ #bigBucks {
+     text-align: center;
+ }
+
+ .headstat {
+     background: var(--card);
+     padding: 20px;
+     border-radius: 10px;
+     text-align: center;
+     margin-bottom: 16px;
+     max-width: 500px;
+     margin: 16px auto;
+ }
+
+ .gridStats {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 13px;
+     margin-bottom: 15px;
+ }
+
+ .stat {
+     background: var(--card);
+     padding: 15px;
+     border-radius: 12px;
+ }
+
+ .val {
+     font-size: 1.2rem;
+     font-weight: bold;
+     margin-top: 4px;
+ }
+
+
+ /* =========================== 
+  ==== All RUNS ======
+============================== */
+
+ .logbox {
+     display: flex;
+     flex-direction: column;
+     gap: 12px;
+     margin-top: 16px;
+ }
+
+ .log {
+     display: block;
+     background: var(--card);
+     padding: 16px;
+     border-radius: 12px;
+     border-left: 4pz solid var(--accent);
+     text-decoration: none;
+ }
+
+ /* =========================== 
+  ==== one run======
+============================== */
+/* alot more work to be doen on this page and add a run page  */
+
+ .run {
+     background: var(--card);
+     padding: 20px;
+     border-radius: 15px;
+     margin-top: 15px;
+ }
+
+ .stats {
+     list-style: none;
+     padding: 0;
+ }
+
+ .stats li {
+     padding: 8px 0;
+     border-bottom: 2px solid var(--border);
+ }
+
+ .stats span {
+     font-weight: bold;
+     margin-right: 8px;
+ }
+
+ .action {
+     display: flex;
+     gap: 10px;
+     margin-top: 16px;
+ }
+
+ .danger, .btn {
+     padding: 8px;
+     border-radius: 8px;
+     /* background: var(--accent); */
+     border: 2px solid var(--accent);
+     color: var(--accent);
+     text-decoration: none;
+ }
+
+ .btn{
     background: var(--accent);
-    color: var(--header-text);
-}
+    color: white;
+ }
 
+ .danger{
+    background: white;
+    color: var(--accent)
+ }
