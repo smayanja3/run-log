@@ -4,10 +4,15 @@ main{
     padding:15px;
 }
 
+main h2{
+    text-align: center;
+    margin: 15px auto;
+}
 #formBox{
     background: var(--card);
     border-radius: 15px;
     border: 1px solid var(--card);
+    padding:25px;
 }
 
 #formTop {
@@ -37,3 +42,18 @@ select {
     display:inline-block;
 }
 
+
+ #actions {
+     display: flex;
+     gap: 10px;
+     margin-top: 16px;
+ }
+
+#cancel {
+     padding: 8px;
+     border-radius: 8px;
+     background: var(--page);
+     border: 2px solid var(--accent);
+     color: var(--accent);
+     text-decoration: none;
+ }
