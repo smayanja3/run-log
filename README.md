@@ -2,7 +2,7 @@
 
 Log your runs, track how they felt, and watch your progress add up.
 
-**Live Demo:** [Add Render link here\]](https://run-log-ec9a.onrender.com/login)
+**Live Demo:** [Live Site\]](https://run-log-ec9a.onrender.com/login)
 
 ---
 
